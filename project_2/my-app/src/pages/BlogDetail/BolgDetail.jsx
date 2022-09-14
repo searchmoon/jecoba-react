@@ -1,4 +1,3 @@
-
 const BolgDetail = () => {
     return (
         <div>
