@@ -1,22 +1,29 @@
 import React from "react"
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import UserContext from "./context/UserContext";
 import BlogDetail from "./pages/BlogDetail/BolgDetail";
 import Home from "./pages/Home/Home"
+import data from "./database/data.json"
 
 function App() {
+    const [userId, setUserId] = useState(0)
+    const [isLogin, setIsLogin] = useState(true)
+    // console.log(data);
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route
-                    path="/"
-                    element={<Home/>}
-                />
-                <Route
-                    path="/blog/:id"
-                    element={<BlogDetail/>}
-                />
-            </Routes>
-        </BrowserRouter>
+        <UserContext.Provider value={{ userId, isLogin }}>
+            <BrowserRouter>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Home />}
+                    />
+                    <Route
+                        path="/blog/:id"
+                        element={<BlogDetail />}
+                    />
+                </Routes>
+            </BrowserRouter>
+        </UserContext.Provider>
 
     );
 }
