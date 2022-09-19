@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import "./home.css"
-
+import Header from "../../components/header/Header"
+import Banner from "../../components/banner/Banner"
+import Main from "../../components/main/Main"
+import Footer from "../../components/footer/Footer"
 const Home = () => {
     const [posts, setPosts] = useState()
 
@@ -12,13 +15,18 @@ const Home = () => {
                 setPosts(json.data)
             })
     }, [])
-    console.log(posts)
+
+    //console.log(posts)
+
     return (
-        <div>
-            Home
-            {posts.map((post) => <div key={post.id}>{post.title}</div>
-            )}
-        </div>
+        <>
+            <Header />
+            <Banner />
+            <Main
+                posts={posts}
+            />
+            <Footer />
+        </>
     );
 };
 
