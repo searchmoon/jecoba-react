@@ -7,7 +7,7 @@ import imgIconLogout from "../../../assets/icon-logout.svg"
 export default function Login() {
     return (
         <>
-            <li clasName="profile-img">
+            <li className="profile-img">
               <Link to="#">
                 <img src={imgProfile} alt="My Page" />
               </Link>

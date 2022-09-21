@@ -6,8 +6,8 @@ import Home from "./pages/Home/Home"
 // import data from "./database/data.json"
 
 function App() {
-    const [userId, setUserId] = useState(0)
-    const [isLogin, setIsLogin] = useState(false)
+    const [userId, setUserId] = useState(1)
+    const [isLogin, setIsLogin] = useState(true)
     // isLogin이 true 면 로그인 상태, false면 로그아웃 상태
     // console.log(data);
     return (
