@@ -4,6 +4,7 @@ import UserContext from "./context/UserContext";
 import BlogDetail from "./pages/BlogDetail/BolgDetail";
 import Home from "./pages/Home/Home"
 // import data from "./database/data.json"
+import "./app.css"
 
 function App() {
     const [userId, setUserId] = useState(1)

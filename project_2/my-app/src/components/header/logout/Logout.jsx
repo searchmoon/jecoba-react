@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import imgIconLogin from "../../../assets/icon-login.svg"
 import imgIconLogout from "../../../assets/icon-register.svg"
-
+import "./logout.css"
 
 export default function Logout() {
   return (

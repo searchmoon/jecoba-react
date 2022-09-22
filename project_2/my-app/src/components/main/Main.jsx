@@ -5,6 +5,8 @@ import Category from './category/Category'
 import Author from './author/Author'
 import { Link } from "react-router-dom"
 import About from "./about/About"
+import "./main.css"
+ 
 
 export default function Main() {
     const { isLogin } = useContext(UserContext)

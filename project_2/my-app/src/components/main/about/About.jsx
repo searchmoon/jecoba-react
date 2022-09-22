@@ -12,6 +12,10 @@ export default function About() {
     const { userId } = useContext(UserContext)
     const [userData, setUserData] = useState()
 
+    const snsImage = {
+        imgFacebook, imgTwitter, imgInstagram, imgGitHub
+    }
+
     useEffect(() => {
         axios
             .get(`http://localhost:3001/users/${userId}`)
@@ -22,44 +26,33 @@ export default function About() {
 
     console.log(userData)
     return (
-        <aside className="about">
-					<h2>About Me</h2>
-					<img src="./images/profile.jpg" alt="" className="user-profile" />
-					<p className="user-name">Chilli</p>
-					<p className="user-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-					<h3>Categories</h3>
-					<ul className="categories">
-						<li><Link to="/">Life</Link></li>
-						<li><Link to="/">Style</Link></li>
-						<li><Link to="/">Tech</Link></li>
-						<li><Link to="/">Sport</Link></li>
-						<li><Link to="/">Photo</Link></li>
-						<li><Link to="/">Develop</Link></li>
-						<li><Link to="/">Music</Link></li>
-					</ul>
-					<h3>Follow</h3>
-					<ul className="sns">
-						<li>
-							<Link to="/">
-								<img src={imgFacebook} alt="Facebook" />
-							</Link>
-						</li>
-						<li>
-							<Link to="/">
-								<img src={imgTwitter} alt="Twitter" />
-							</Link>
-						</li>
-						<li>
-							<Link to="/">
-								<img src={imgInstagram} alt="Instagram" />
-							</Link>
-						</li>
-						<li>
-							<Link to="/">
-								<img src={imgGitHub} alt="GitHub" />
-							</Link>
-						</li>
-					</ul>
-				</aside>
-    )
+        <>
+        {userData !== undefined && (
+            <aside className="about">
+            <h2>About Me</h2>
+            <img src="./images/profile.jpg" alt="" className="user-profile" />
+            <p className="user-name">{userData.name}</p>
+            <p className="user-description">{userData.userInfo}</p>
+            <h3>Categories</h3>
+            <ul className="categories">
+                {userData.category.map((c, index) => 
+                <li key={index}><Link to="/">{c}</Link></li>
+                )}
+            </ul>
+            <h3>Follow</h3>
+            <ul className="sns">
+                {console.log(Object.keys(userData.sns))}
+                {Object.keys(userData.sns).map((s, index) => 
+                    <li key={index}>
+                        <Link to="">
+                            <img src={snsImage[`img${s}`]} alt={s} />
+                        </Link>
+                    </li>
+                )}
+                
+            </ul>
+        </aside>
+        )}
+        </>
+            )
 }
