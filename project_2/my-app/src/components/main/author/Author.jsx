@@ -1,15 +1,18 @@
-import React from 'react'
+import React from "react";
+import "./author.css";
 
-export default function Author({userName, created, profileImg}) { 
-
-    return (
-        <div>
-            <dl className="author-wrap">
-                <dt className="a11y-hidden">Author</dt>
-                <dd className="author"><img src={profileImg} alt="" />{userName}</dd>
-                <dt className="a11y-hidden">Created</dt>
-                <dd className="created">{created}</dd>
-			</dl>
-        </div>
-    )
+export default function Author({ userName, created, profileImg }) {
+  return (
+    <div>
+      <dl className="author-wrap">
+        <dt className="a11y-hidden">Author</dt>
+        <dd className="author">
+          <img src={profileImg} alt="" />
+          {userName}
+        </dd>
+        <dt className="a11y-hidden">Created</dt>
+        <dd className="created">{created}</dd>
+      </dl>
+    </div>
+  );
 }

@@ -1,58 +1,61 @@
-import { Link } from 'react-router-dom'
-import { useState, useEffect, useContext } from "react"
-import UserContext from "../../../context/UserContext"
-import "./about.css"
-import imgFacebook from "../../../assets/Facebook.svg"
-import imgTwitter from "../../../assets/Twitter.svg"
-import imgInstagram from "../../../assets/Instagram.svg"
-import imgGitHub from "../../../assets/Github.svg"
-import axios from "axios"
+import { Link } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import UserContext from "../../../context/UserContext";
+import "./about.css";
+import imgFacebook from "../../../assets/Facebook.svg";
+import imgTwitter from "../../../assets/Twitter.svg";
+import imgInstagram from "../../../assets/Instagram.svg";
+import imgGitHub from "../../../assets/Github.svg";
+import axios from "axios";
+import "./about.css";
 
 export default function About() {
-    const { userId } = useContext(UserContext)
-    const [userData, setUserData] = useState()
+  const { userId } = useContext(UserContext);
+  const [userData, setUserData] = useState();
 
-    const snsImage = {
-        imgFacebook, imgTwitter, imgInstagram, imgGitHub
-    }
+  const snsImage = {
+    imgFacebook,
+    imgTwitter,
+    imgInstagram,
+    imgGitHub,
+  };
 
-    useEffect(() => {
-        axios
-            .get(`http://localhost:3001/users/${userId}`)
-            .then((json) => {
-                setUserData(json.data)
-            })
-    }, [])
+  useEffect(() => {
+    axios.get(`http://localhost:3001/users/${userId}`).then((json) => {
+      setUserData(json.data);
+    });
+  }, []);
 
-    console.log(userData)
-    return (
-        <>
-        {userData !== undefined && (
-            <aside className="about">
-            <h2>About Me</h2>
-            <img src="./images/profile.jpg" alt="" className="user-profile" />
-            <p className="user-name">{userData.name}</p>
-            <p className="user-description">{userData.userInfo}</p>
-            <h3>Categories</h3>
-            <ul className="categories">
-                {userData.category.map((c, index) => 
-                <li key={index}><Link to="/">{c}</Link></li>
-                )}
-            </ul>
-            <h3>Follow</h3>
-            <ul className="sns">
-                {console.log(Object.keys(userData.sns))}
-                {Object.keys(userData.sns).map((s, index) => 
-                    <li key={index}>
-                        <Link to="">
-                            <img src={snsImage[`img${s}`]} alt={s} />
-                        </Link>
-                    </li>
-                )}
-                
-            </ul>
+  console.log(userData);
+  return (
+    <>
+      {userData !== undefined && (
+        <aside className="about">
+          <h2>About Me</h2>
+          <img src={userData.profileImg} alt="" className="user-profile" />
+          <p className="user-name">{userData.name}</p>
+          <p className="user-description">{userData.userInfo}</p>
+          <h3>Categories</h3>
+          <ul className="categories">
+            {userData.category.map((c, index) => (
+              <li key={index}>
+                <Link to="/">{c}</Link>
+              </li>
+            ))}
+          </ul>
+          <h3>Follow</h3>
+          <ul className="sns">
+            {console.log(Object.keys(userData.sns))}
+            {Object.keys(userData.sns).map((s, index) => (
+              <li key={index}>
+                <Link to="">
+                  <img src={snsImage[`img${s}`]} alt={s} />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </aside>
-        )}
-        </>
-            )
+      )}
+    </>
+  );
 }
